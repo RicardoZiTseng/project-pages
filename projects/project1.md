@@ -1,7 +1,7 @@
 ---
 layout: project
-title: "Project 1"
-description: "Description of Project #1"
+title: "Projects"
+description: "Face/Gender Recognition, Calculational Physics and Neural Network"
 header-img: "img/home-bg.jpg"
 category: project1
 ---
