@@ -1,8 +1,9 @@
 ---
 layout: post
-title: C++程序设计学习笔记（二）
+title: 	C++程序设计学习笔记（二）
 author: Ricardo
-tags： C++
+tags:	 C++
+subtitle:  类
 ---
 #### 类的定义与对象的创建
 
