@@ -93,53 +93,53 @@ int Kruskal(){
 #include <cstring>
 #include <iostream>
 using namespace std;
- 
+
 const int maxn = 1000 + 10;
- 
+
 struct Edge
 {
-    int p1, p2;
-    Edge(int u, int v):p1(u), p2(v) {}
+	int p1, p2;
+	Edge(int u, int v) :p1(u), p2(v) {}
 };
- 
+
 set<int> block;			//连通块集合
 vector<Edge> edges;		//存储边
 int p[maxn];			//存储每个点的父结点
- 
+
 int find_sym(int x){			//寻找父结点
-    return (p[x] == x)? x : (p[x] = find_sym(p[x]));
+	return (p[x] == x) ? x : (p[x] = find_sym(p[x]));
 }
- 
+
 int main(){
-    int n, m, k;
-    scanf("%d %d %d", &n, &m, &k);
-    for(int i=0;i<m;i++){
-        int u, v;
-        scanf("%d %d", &u, &v);
-        edges.push_back(Edge(u, v));
-    }
-    for(int i=0;i<k;i++){
-        int lost_city;
-        scanf("%d", &lost_city);
-        block.clear();
-        memset(p, 0, sizeof(p));
-        for(int j=1;j<=n;j++) p[j] = j;			//初始化并查集
-        for(int h=0;h<m;h++){	
-            Edge e = edges[h];
-            if(e.p1==lost_city || e.p2==lost_city) continue;		//当有一个端点是被占领的城市时，则跳过不处理
-            else{
-                int x = find_sym(e.p1);
-                int y = find_sym(e.p2);			//找出当前边的两个结点所在集合编号
-                if(x!=y) p[x] = y;				//如果不在一个集合中, 则合并
-            }
-        }
-        for(int j=1;j<=n;j++){
-            int symbol = find_sym(j);		//根据并查集查找所有连通块编号，并放入连通块集合中
-            if(!block.count(symbol)) block.insert(symbol);
-        }
-        cout << block.size()-2 << endl;
-    }
-    return 0;
+	int n, m, k;
+	scanf("%d %d %d", &n, &m, &k);
+	for (int i = 0; i<m; i++){
+		int u, v;
+		scanf("%d %d", &u, &v);
+		edges.push_back(Edge(u, v));
+	}
+	for (int i = 0; i<k; i++){
+		int lost_city;
+		scanf("%d", &lost_city);
+		block.clear();
+		memset(p, 0, sizeof(p));
+		for (int j = 1; j <= n; j++) p[j] = j;			//初始化并查集
+		for (int h = 0; h<m; h++){
+			Edge e = edges[h];
+			if (e.p1 == lost_city || e.p2 == lost_city) continue;		//当有一个端点是被占领的城市时，则跳过不处理
+			else{
+				int x = find_sym(e.p1);
+				int y = find_sym(e.p2);			//找出当前边的两个结点所在集合编号
+				if (x != y) p[x] = y;				//如果不在一个集合中, 则合并
+			}
+		}
+		for (int j = 1; j <= n; j++){
+			int symbol = find_sym(j);		//根据并查集查找所有连通块编号，并放入连通块集合中
+			if (!block.count(symbol)) block.insert(symbol);
+		}
+		cout << block.size() - 2 << endl;
+	}
+	return 0;
 }
 ```
 
@@ -152,44 +152,44 @@ int main(){
 #include <cstring>
 #include <vector>
 using namespace std;
- 
+
 const int maxn = 1000 + 10;
 int current_point, vis[maxn];
 vector<int> G[maxn];
- 
+
 void dfs(int p){
-    if(p == current_point) return;
-    if(vis[p]) return;
-    vis[p] = 1;
-    for(unsigned int i=0;i<G[p].size();i++){
-        dfs(G[p][i]);
-    }
+	if (p == current_point) return;
+	if (vis[p]) return;
+	vis[p] = 1;
+	for (unsigned int i = 0; i<G[p].size(); i++){
+		dfs(G[p][i]);
+	}
 }
- 
+
 int main(){
-    int n, m, k;
-    scanf("%d %d %d", &n, &m, &k);
-    for(int i=0;i<m;i++){
-        int p1, p2;
-        scanf("%d %d", &p1, &p2);
-        G[p1].push_back(p2);
-        G[p2].push_back(p1);
-    }
-    for(int i=0;i<k;i++){
-        int block=0;
-        scanf("%d", &current_point);
-        memset(vis, 0, sizeof(vis));
-        for(int j=1;j<=n;j++){
-            if(!vis[j]){
-                dfs(j);
-                block ++;
-            }
-        }
-        printf("%d\n", block-2);
-    }
-    if(n && !m && k)
-        printf("0\n");
-    return 0;
+	int n, m, k;
+	scanf("%d %d %d", &n, &m, &k);
+	for (int i = 0; i<m; i++){
+		int p1, p2;
+		scanf("%d %d", &p1, &p2);
+		G[p1].push_back(p2);
+		G[p2].push_back(p1);
+	}
+	for (int i = 0; i<k; i++){
+		int block = 0;
+		scanf("%d", &current_point);
+		memset(vis, 0, sizeof(vis));
+		for (int j = 1; j <= n; j++){
+			if (!vis[j]){
+				dfs(j);
+				block++;
+			}
+		}
+		printf("%d\n", block - 2);
+	}
+	if (n && !m && k)
+		printf("0\n");
+	return 0;
 }
 ```
 
