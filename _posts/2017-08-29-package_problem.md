@@ -22,7 +22,7 @@ tag: 动态规划
 
 由于只有这两种策略，且要求获得最大价值，因此：
 
-​						$dp[i][v] = max\{dp[i-1][v], dp[i-1][v-w[i]] + c[i]\}$	
+​						$dp[i][v] = max\lbrace dp[i-1][v], dp[i-1][v-w[i]] + c[i] \rbrace$	
 
 ​									$(1\leq i \leq n, w[i] \leq v \leq V)$
 
@@ -44,7 +44,7 @@ for(int i=1; i<=n; i++){
 
 可以从状态转移方程中发现，$dp[i][]$只与$dp[i-1][]$有关，因此我们可以认为在一次外循环之后，$dp[i-1][]$就再也用不上了，因此状态转移方程可以改为：
 
-​							  $dp[v] = max \{ dp[v], dp[v-w[i]] + c[i]\}$
+​							  $dp[v] = max \lbrace dp[v], dp[v-w[i]] + c[i] \rbrace$
 
 ​									$(1\leq i \leq n, w[i] \leq v \leq V)$
 
@@ -69,7 +69,7 @@ for(int i=1; i<=n; i++){
 
 ​	在这道题目中，需要支付的金额相当于是背包的容量V，硬币的面额相当于物品的重量和价值，所以在程序中我们定义一个状态数组`dp[V]={0}`, 面额数组`w[n]`,那么状态转移方程可以写为:
 
-​							$dp[v] = max\{dp[v], dp[v-w[i]] + w[i]\}$
+​							$dp[v] = max\lbrace dp[v], dp[v-w[i]] + w[i] \rbrace$
 
 ​									$(1\leq i \leq n, w[i] \leq v \leq V)$
 
